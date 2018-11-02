@@ -18,4 +18,16 @@ python 3.6+
 ```
 python setup.py install
 python -m peak.server
+connect to localhost:8000
 ```
+
+### Structure
+#### Astral
+This is the backend of the webserver. It negotiates the ODBC connection and provides the logic for the web framework. It's built to be generic and extensible to other websites.
+
+#### Notebooks
+Jupyter notebooks for mocking up fake data in the database and interacting with them. I've found these notebooks to be incredibly useful for this type of task.
+
+#### Peak
+This is the actual implementation of the website. In some ways it's a submodule/implementation of Astral.
+
