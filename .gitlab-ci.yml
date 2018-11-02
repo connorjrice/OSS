@@ -1,0 +1,16 @@
+stages:
+ - test
+ - deploy
+
+test:
+ stage: test
+ script:
+ - python3 setup.py install
+ - python3 -m pip install . -q
+ - pytest
+
+deploy:
+ stage: deploy
+ script:
+ - rsync -avz -e '-ssh -p 55666 $CI_PROJECT_DIR/ $DEPLOY_TARGET:~/peak --delete
+ - ssh -p 55666 $DEPLOY_TARGET 'sudo supervisorctl restart ossserver'
